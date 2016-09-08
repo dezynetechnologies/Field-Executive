@@ -26,8 +26,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"
+        <activity android:name=".CreateNewActivity"
             android:theme="@style/AppTheme"/>
+
+        <activity android:name=".MainActivity"/>
+
+        <activity android:name=".SubmittionActivity"
+            android:theme="@style/AppTheme"/>
+
+
     </application>
 
 </manifest>

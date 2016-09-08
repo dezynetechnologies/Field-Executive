@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_horizontal_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="in.dezyne.fieldexecutive.MainActivity"
+    tools:context=".CreateNewActivity"
     android:background="@drawable/back">
 
 
@@ -202,6 +202,13 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView2"
+        android:layout_below="@+id/spinner2"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_alignEnd="@+id/textView3" />
 
 
 </RelativeLayout>
