@@ -33,6 +33,8 @@
 
         <activity android:name=".SubmittionActivity"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".ApprovedActivity"/>
+        <activity android:name=".PendingActivity"/>
 
 
     </application>

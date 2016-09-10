@@ -3,10 +3,13 @@ package in.dezyne.fieldexecutive;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -36,11 +39,12 @@ public class CreateNewActivity extends AppCompatActivity {
     DatabaseHandler db;
     static int id;
     EditText name,age,address;
-    String image,nam,add,se,ag;
+    String image,nam,add,se,ag,status;
 
     RadioGroup sex;
     Spinner salary,saving;
     RadioButton rb;
+    final Context context = this;
 
 
 
@@ -88,7 +92,7 @@ public class CreateNewActivity extends AppCompatActivity {
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                status = "Pending";
                 id=0;
                 int selectedId = sex.getCheckedRadioButtonId();
                 // find the radiobutton by returned id
@@ -104,7 +108,7 @@ public class CreateNewActivity extends AppCompatActivity {
                 String sav = saving.getSelectedItem().toString();
 
                 Log.d("Insert: ", "Inserting ..");
-                db.addContact(new Fields(id,image,nam,se,ag,add,sal,sav));
+                db.addContact(new Fields(id,image,nam,se,ag,add,sal,sav,status));
 
 
                 // Reading all contacts
@@ -112,12 +116,23 @@ public class CreateNewActivity extends AppCompatActivity {
                 List<Fields> contacts = db.getAllContacts();
 
                 for (Fields cn : contacts) {
-                    String log = "Id: "+cn.getID()+" ,Image: " + cn.getImagepath()+" ,Name: " + cn.getName() + " ,Sex: " + cn.getSex()+" ,Age: " + cn.getAge()+" ,Address: " + cn.getAddress()+" ,Current Salary: " + cn.getSalary()+" ,Saving: " + cn.getSaving();
+                    String log = "Id: "+cn.getID()+" ,Image: " + cn.getImagepath()+" ,Name: " + cn.getName() + " ,Sex: " + cn.getSex()+" ,Age: " + cn.getAge()+" ,Address: " + cn.getAddress()+" ,Current Salary: " + cn.getSalary()+" ,Saving: " + cn.getSaving()+ " ,Status: " + cn.getStatus();
                     // Writing Contacts to log
                     Log.d("Name: ", log);
+
+                    Handler mHandler = new Handler();
+                    mHandler.postDelayed(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(CreateNewActivity.this,MainActivity.class);
+                            startActivity(intent);
+                        }
+
+                    }, 2000L);
+
                 }
             id++;
-
 
             }
         });
@@ -169,5 +184,7 @@ public class CreateNewActivity extends AppCompatActivity {
             }
         }
     }
+
+
 
 }

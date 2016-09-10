@@ -11,11 +11,12 @@ public class Fields {
     String _address;
     String _salary;
     String _saving;
+    String _status;
 
     public Fields()
     {
     }
-public Fields(int id,String imagepath,String name,String sex,String age,String address,String salary,String saving)
+public Fields(int id,String imagepath,String name,String sex,String age,String address,String salary,String saving,String status)
 {
     this._id = id;
     this._imagepath= imagepath;
@@ -25,6 +26,7 @@ public Fields(int id,String imagepath,String name,String sex,String age,String a
     this._address = address;
     this._salary = salary;
     this._saving = saving;
+    this._status = status;
 }
 
     public int getID()
@@ -98,6 +100,15 @@ public Fields(int id,String imagepath,String name,String sex,String age,String a
     public void setSaving(String saving)
     {
         this._saving=saving ;
+    }
+
+    public String getStatus()
+    {
+        return  this._status;
+    }
+    public void setStatus(String status)
+    {
+        this._status = status;
     }
 
 }

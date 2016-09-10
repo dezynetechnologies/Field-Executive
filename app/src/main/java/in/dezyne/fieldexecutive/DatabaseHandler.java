@@ -30,6 +30,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_ADDRESS = "address";
     private static final String KEY_SALARY = "salary";
     private static final String KEY_SAVING = "saving";
+    private static final String KEY_STATUS = "status";
 
     Fields fields;
     SQLiteDatabase db;
@@ -56,7 +57,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_AGE + " TEXT,"
                 + KEY_ADDRESS+" TEXT,"
                 + KEY_SALARY+" TEXT,"
-                + KEY_SAVING+ " TEXT"
+                + KEY_SAVING+ " TEXT,"
+                + KEY_STATUS+ " TEXT"
                 +  ")";
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         Log.v("DatabaseHandler","onCreate Called().");
@@ -88,6 +90,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_ADDRESS, fields.getAddress());
         values.put(KEY_SALARY, fields.getSalary());
         values.put(KEY_SAVING, fields.getSaving());
+        values.put(KEY_STATUS, fields.getStatus());
         // Inserting Row
         db.insert(TABLE_CONTACTS, null, values);
         db.close(); // Closing database connection
@@ -103,13 +106,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         KEY_AGE,
                         KEY_ADDRESS,
                         KEY_SALARY,
-                        KEY_SAVING },
+                        KEY_SAVING,
+                        KEY_STATUS },
                         KEY_ID + "=?",new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
          fields = new Fields(Integer.parseInt(cursor.getString(0)),cursor.getString(1), cursor.getString(2),cursor.getString(3),
-                cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7) );
+                cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8));
 
         cursor.close();
         // return contact
@@ -118,7 +122,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Getting All Contacts
     public List<Fields> getAllContacts() {
-        List<Fields> contactList = new ArrayList<Fields>();
+        List<Fields> contactList = new ArrayList<>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_CONTACTS;
 
@@ -137,6 +141,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 fields.setAddress(cursor.getString(5));
                 fields.setSalary(cursor.getString(6));
                 fields.setSaving(cursor.getString(7));
+                fields.setStatus(cursor.getString(8));
                 // Adding contact to list
                 contactList.add(fields);
             } while (cursor.moveToNext());
@@ -163,6 +168,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_ADDRESS, fields.getAddress());
         values.put(KEY_SALARY, fields.getSalary());
         values.put(KEY_SAVING, fields.getSaving());
+        values.put(KEY_STATUS, fields.getStatus());
 
         // updating row
         return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?",
@@ -179,4 +185,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // return count
         return cursor.getCount();
     }
+
+    public List<Fields> Pending()
+    {
+        String pendingQuery = "SELECT * FROM " + TABLE_CONTACTS + "WHERE status = "+ "Pending";
+        db.execSQL(pendingQuery);
+        return null;
+    }
+
 }

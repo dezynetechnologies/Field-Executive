@@ -64,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_below="@+id/nameText"
+        android:checkedButton="@+id/radioButton2"
         android:layout_alignLeft="@+id/nameText"
         android:layout_alignStart="@+id/nameText">
 
