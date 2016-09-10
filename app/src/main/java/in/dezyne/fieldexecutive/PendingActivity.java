@@ -12,6 +12,7 @@ import java.util.List;
 public class PendingActivity extends Activity {
 
     DatabaseHandler db;
+    Fields f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,14 +20,11 @@ public class PendingActivity extends Activity {
         setContentView(R.layout.pending_layout);
 
 
-        List<Fields> contacts = db.Pending();
+        f = db.getContact(1);
+        f.getID();
 
-        for (Fields cn : contacts) {
-            String log = "Id: " + cn.getID() + " ,Image: " + cn.getImagepath() + " ,Name: " + cn.getName() + " ,Sex: " + cn.getSex() + " ,Age: " + cn.getAge() + " ,Address: " + cn.getAddress() + " ,Current Salary: " + cn.getSalary() + " ,Saving: " + cn.getSaving() + " ,Status: " + cn.getStatus();
-            // Writing Contacts to log
-            Log.d("Name: ", log);
 
-        }
+
 
         }
 }

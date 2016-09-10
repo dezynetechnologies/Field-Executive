@@ -108,7 +108,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         KEY_SALARY,
                         KEY_SAVING,
                         KEY_STATUS },
-                        KEY_ID + "=?",new String[] { String.valueOf(id) }, null, null, null, null);
+                        KEY_STATUS + "=?",new String[] { "pending" }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
@@ -186,11 +186,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return cursor.getCount();
     }
 
-    public List<Fields> Pending()
-    {
-        String pendingQuery = "SELECT * FROM " + TABLE_CONTACTS + "WHERE status = "+ "Pending";
-        db.execSQL(pendingQuery);
-        return null;
-    }
+
 
 }
