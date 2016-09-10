@@ -50,6 +50,12 @@
         <item>60000 "-" 70000</item>
     </string-array>
 
+    <array name="nav_drawer_icons">
+        <item>@drawable/submit</item>
+        <item>@drawable/profile</item>
+        <item>@drawable/logout</item>
+    </array>
+
 
 
 
