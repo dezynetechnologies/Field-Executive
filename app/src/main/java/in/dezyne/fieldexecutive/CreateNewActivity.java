@@ -93,7 +93,7 @@ public class CreateNewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 status = "Pending";
-                id=0;
+                id=1;
                 int selectedId = sex.getCheckedRadioButtonId();
                 // find the radiobutton by returned id
                 nam =name.getText().toString();

@@ -92,8 +92,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_SAVING, fields.getSaving());
         values.put(KEY_STATUS, fields.getStatus());
         // Inserting Row
-        db.insert(TABLE_CONTACTS, null, values);
+       db.insert(TABLE_CONTACTS, null, values);
+        String sQuery = "SELECT  * FROM " + TABLE_CONTACTS;
+        Cursor cursor = db.rawQuery(sQuery,null);
+        int g=cursor.getCount();
+        Log.v("DatabaseHandler:count",Integer.toString(g));
         db.close(); // Closing database connection
+
     }
 
     Fields getContact(int id) {
@@ -108,13 +113,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         KEY_SALARY,
                         KEY_SAVING,
                         KEY_STATUS },
-                        KEY_STATUS + "=?",new String[] { "pending" }, null, null, null, null);
+                        KEY_STATUS + "=?",new String[] { "Pending" }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
+        int g=cursor.getCount();
+        Log.v("DatabaseHandler:count",Integer.toString(g));
 
          fields = new Fields(Integer.parseInt(cursor.getString(0)),cursor.getString(1), cursor.getString(2),cursor.getString(3),
                 cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8));
 
+        String log = "Id: "+fields.getID()+" ,Image: " + fields.getImagepath()+" ,Name: " + fields.getName() + " ,Sex: " + fields.getSex()+" ,Age: " + fields.getAge()+" ,Address: " + fields.getAddress()+" ,Current Salary: " + fields.getSalary()+" ,Saving: " + fields.getSaving()+ " ,Status: " + fields.getStatus();
+        Log.d("Name: ", log);
         cursor.close();
         // return contact
         return fields;
