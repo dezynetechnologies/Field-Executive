@@ -20,10 +20,14 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab;
     boolean isInFront;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
+
+
+
 
         submit = (Button)findViewById(R.id.submittions);
         logout = (Button)findViewById(R.id.logout);
@@ -52,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,CreateNewActivity.class);
                 startActivity(intent);
+
+
             }
         });
 
@@ -61,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         isInFront = true;
+
     }
 
     @Override

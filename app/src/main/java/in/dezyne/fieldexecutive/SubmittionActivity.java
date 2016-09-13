@@ -12,6 +12,7 @@ public class SubmittionActivity extends AppCompatActivity {
 
     ImageButton approve,pending;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,7 @@ public class SubmittionActivity extends AppCompatActivity {
 
         approve = (ImageButton)findViewById(R.id.approvedview);
         pending = (ImageButton)findViewById(R.id.pendingview);
+
 
         approve.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,20 +2,27 @@
 <resources>
 
 <string-array name="imagepath">
-    <item>www.image1.com</item>
-    <item>www.image2.com</item>
-    <item>www.image3.com</item>
+    <item>@drawable/babu</item>
+    <item>@drawable/raju</item>
+    <item>@drawable/shyam</item>
 </string-array>
     <string-array name="name">
         <item>Raju</item>
         <item>Shayam</item>
         <item>Babu bhaiya</item>
     </string-array>
+    <string-array name="submitdate">
+        <item>22/12/2015</item>
+        <item>23/12/2015</item>
+        <item>24/12/2015</item>
+    </string-array>
+
     <string-array name="sex">
         <item>Male</item>
         <item>Male</item>
         <item>Male</item>
     </string-array>
+
     <string-array name="age">
         <item>26</item>
         <item>26</item>

@@ -29,6 +29,7 @@
     <string name="deleteContact">Are you sure, you want to delete it.</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="text">TEXT</string>
 
     <string-array name="Csalary">
         <item>less than 1,00,000</item>
