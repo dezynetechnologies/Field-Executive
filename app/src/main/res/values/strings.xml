@@ -59,5 +59,14 @@
 
 
 
+    <string name="lbl_you_are_at">YOU ARE AT</string>
+    <string name="btn_get_location">GET MY LOCATION</string>
+    <string name="btn_start_location_updates">START LOCATION UPDATES</string>
+    <string name="btn_stop_location_updates">STOP LOCATION UPDATES</string>
+    <string name="gps_message">Couldnt get the location. Make sure location is enabled on the device</string>
+
+    <string name="permission_required_toast">Need Permission</string>
+    <string name="record_audio_permission_denied" />
+    <string name="permission_rationale_record_audio"/>
 
 </resources>

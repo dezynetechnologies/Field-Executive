@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 /**
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Button submit,logout;
     FloatingActionButton fab;
     boolean isInFront;
+    ImageButton maps;
 
 
     @Override
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         submit = (Button)findViewById(R.id.submittions);
         logout = (Button)findViewById(R.id.logout);
         fab = (FloatingActionButton)findViewById(R.id.fabadd);
+        maps =(ImageButton)findViewById(R.id.maps);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
 
+            }
+        });
+
+        maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,Maps.class);
+                startActivity(intent);
             }
         });
 

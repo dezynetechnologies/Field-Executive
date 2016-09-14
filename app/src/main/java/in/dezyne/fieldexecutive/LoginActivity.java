@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -64,8 +65,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private ImageView splash;
+     ImageView splash;
     LinearLayout ll;
+
+
+
+    public void askPerm()
+    {
+        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED)
+        {
+            PermissionUtils.requestPermission((AppCompatActivity) this,1, android.Manifest.permission.ACCESS_COARSE_LOCATION,true);
+        }
+        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED)
+        {
+            PermissionUtils.requestPermission((AppCompatActivity) this,1, android.Manifest.permission.ACCESS_FINE_LOCATION,true);
+        }
+    }
 
 
     @Override
@@ -80,7 +95,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         ll.animate().alpha(1f).setDuration(3000);
 
 
-
+        askPerm();
 
 
         // Set up the login form.
