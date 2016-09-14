@@ -12,11 +12,13 @@ public class Fields {
     String _salary;
     String _saving;
     String _status;
+    String _submitdate;
+
 
     public Fields()
     {
     }
-public Fields(int id,String imagepath,String name,String sex,String age,String address,String salary,String saving,String status)
+public Fields(int id,String imagepath,String name,String sex,String age,String address,String salary,String saving,String status,String submitdate)
 {
     this._id = id;
     this._imagepath= imagepath;
@@ -27,6 +29,8 @@ public Fields(int id,String imagepath,String name,String sex,String age,String a
     this._salary = salary;
     this._saving = saving;
     this._status = status;
+    this._submitdate = submitdate;
+
 }
 
     public int getID()
@@ -110,5 +114,15 @@ public Fields(int id,String imagepath,String name,String sex,String age,String a
     {
         this._status = status;
     }
+
+    public String getSubmitdate()
+    {
+        return  this._submitdate;
+    }
+    public void setSubmitdate(String submitdate)
+    {
+        this._submitdate = submitdate;
+    }
+
 
 }

@@ -31,9 +31,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_SALARY = "salary";
     private static final String KEY_SAVING = "saving";
     private static final String KEY_STATUS = "status";
+    private static final String KEY_SUBMITDATE = "submitdate";
+
 
     Fields fields;
-    SQLiteDatabase db;
+     SQLiteDatabase db;
 
 
 
@@ -58,7 +60,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_ADDRESS+" TEXT,"
                 + KEY_SALARY+" TEXT,"
                 + KEY_SAVING+ " TEXT,"
-                + KEY_STATUS+ " TEXT"
+                + KEY_STATUS+ " TEXT,"
+                + KEY_SUBMITDATE+ " TEXT"
                 +  ")";
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         Log.v("DatabaseHandler","onCreate Called().");
@@ -91,6 +94,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_SALARY, fields.getSalary());
         values.put(KEY_SAVING, fields.getSaving());
         values.put(KEY_STATUS, fields.getStatus());
+        values.put(KEY_SUBMITDATE, fields.getSubmitdate());
         // Inserting Row
        db.insert(TABLE_CONTACTS, null, values);
         String sQuery = "SELECT  * FROM " + TABLE_CONTACTS;
@@ -98,6 +102,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         int g=cursor.getCount();
         Log.v("DatabaseHandler:count",Integer.toString(g));
         db.close(); // Closing database connection
+
 
     }
 
@@ -112,17 +117,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         KEY_ADDRESS,
                         KEY_SALARY,
                         KEY_SAVING,
-                        KEY_STATUS },
+                        KEY_STATUS,
+                        KEY_SUBMITDATE },
                         KEY_STATUS + "=?",new String[] { "Pending" }, null, null, null, null);
+
         if (cursor != null)
             cursor.moveToFirst();
         int g=cursor.getCount();
         Log.v("DatabaseHandler:count",Integer.toString(g));
 
          fields = new Fields(Integer.parseInt(cursor.getString(0)),cursor.getString(1), cursor.getString(2),cursor.getString(3),
-                cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8));
+                cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8),cursor.getString(9));
 
-        String log = "Id: "+fields.getID()+" ,Image: " + fields.getImagepath()+" ,Name: " + fields.getName() + " ,Sex: " + fields.getSex()+" ,Age: " + fields.getAge()+" ,Address: " + fields.getAddress()+" ,Current Salary: " + fields.getSalary()+" ,Saving: " + fields.getSaving()+ " ,Status: " + fields.getStatus();
+        String log = "Id: "+fields.getID()+" ,Image: " + fields.getImagepath()+" ,Name: " + fields.getName() + " ,Sex: " + fields.getSex()+" ,Age: " + fields.getAge()+" ,Address: " + fields.getAddress()+" ,Current Salary: " + fields.getSalary()+" ,Saving: " + fields.getSaving()+ " ,Status: " + fields.getStatus()+ " ,SubmitDate: " + fields.getSubmitdate();
         Log.d("Name: ", log);
         cursor.close();
         // return contact
@@ -151,6 +158,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 fields.setSalary(cursor.getString(6));
                 fields.setSaving(cursor.getString(7));
                 fields.setStatus(cursor.getString(8));
+                fields.setSubmitdate(cursor.getString(9));
                 // Adding contact to list
                 contactList.add(fields);
             } while (cursor.moveToNext());
@@ -178,6 +186,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_SALARY, fields.getSalary());
         values.put(KEY_SAVING, fields.getSaving());
         values.put(KEY_STATUS, fields.getStatus());
+        values.put(KEY_SUBMITDATE, fields.getSubmitdate());
 
         // updating row
         return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?",

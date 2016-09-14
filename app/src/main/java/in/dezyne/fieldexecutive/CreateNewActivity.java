@@ -27,8 +27,12 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 public class CreateNewActivity extends AppCompatActivity {
@@ -39,7 +43,7 @@ public class CreateNewActivity extends AppCompatActivity {
     DatabaseHandler db;
     static int id;
     EditText name,age,address;
-    String image,nam,add,se,ag,status;
+    String image,nam,add,se,ag,status,submit;
 
     RadioGroup sex;
     Spinner salary,saving;
@@ -107,8 +111,12 @@ public class CreateNewActivity extends AppCompatActivity {
                 saving  = (Spinner)findViewById(R.id.spinner2);
                 String sav = saving.getSelectedItem().toString();
 
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.UK);
+                 submit = sdf.format(new Date());
+
+
                 Log.d("Insert: ", "Inserting ..");
-                db.addContact(new Fields(id,image,nam,se,ag,add,sal,sav,status));
+                db.addContact(new Fields(id,image,nam,se,ag,add,sal,sav,status,submit));
 
 
                 // Reading all contacts
@@ -116,9 +124,10 @@ public class CreateNewActivity extends AppCompatActivity {
                 List<Fields> contacts = db.getAllContacts();
 
                 for (Fields cn : contacts) {
-                    String log = "Id: "+cn.getID()+" ,Image: " + cn.getImagepath()+" ,Name: " + cn.getName() + " ,Sex: " + cn.getSex()+" ,Age: " + cn.getAge()+" ,Address: " + cn.getAddress()+" ,Current Salary: " + cn.getSalary()+" ,Saving: " + cn.getSaving()+ " ,Status: " + cn.getStatus();
+                    String log = "Id: "+cn.getID()+" ,Image: " + cn.getImagepath()+" ,Name: " + cn.getName() + " ,Sex: " + cn.getSex()+" ,Age: " + cn.getAge()+" ,Address: " + cn.getAddress()+" ,Current Salary: " + cn.getSalary()+" ,Saving: " + cn.getSaving()+ " ,Status: " + cn.getStatus()+ " ,SubmitDate: " + cn.getSubmitdate();
                     // Writing Contacts to log
                     Log.d("Name: ", log);
+
 
                     Handler mHandler = new Handler();
                     mHandler.postDelayed(new Runnable() {
@@ -132,7 +141,6 @@ public class CreateNewActivity extends AppCompatActivity {
                     }, 2000L);
 
                 }
-            id++;
 
             }
         });
@@ -151,10 +159,6 @@ public class CreateNewActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
 
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {

@@ -10,11 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Dezyne 2 on 9/14/2016.
@@ -27,7 +33,8 @@ public class Maps extends Activity implements GoogleApiClient.ConnectionCallback
 
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
 
-     Location mLastLocation;
+    Location mLastLocation;
+
 
     // Google client to interact with Google API
     private GoogleApiClient mGoogleApiClient;
@@ -45,6 +52,10 @@ public class Maps extends Activity implements GoogleApiClient.ConnectionCallback
     // UI elements
     private TextView lblLocation;
     Button btnShowLocation, btnStartLocationUpdates;
+    double latitude;
+    double longitude;
+    String loc,timestamp,userid;
+    LocationUpdateDB db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +81,28 @@ public class Maps extends Activity implements GoogleApiClient.ConnectionCallback
                 displayLocation();
             }
         });
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.UK);
+        timestamp = sdf.format(new Date());
+
+        loc = String.valueOf(latitude)+String.valueOf(longitude);
+
+        userid = "1";
+
+        Log.d("Insert: ", "Inserting ..");
+        db.addContact(new LocationGetSet(userid,timestamp,loc));
+
+        Log.d("Reading: ", "Reading all contacts..");
+        List<LocationGetSet> Location = db.getAllContacts();
+
+        for (LocationGetSet ln : Location) {
+            String log = "Id: " + ln.getuserid() + " ,timestamp: " + ln.gettimestamp() + " ,location: " + ln.getlocation();
+            // Writing Contacts to log
+            Log.d("Name: ", log);
+        }
+
+
+
     }
 
     /**
@@ -91,8 +124,8 @@ public class Maps extends Activity implements GoogleApiClient.ConnectionCallback
                 .getLastLocation(mGoogleApiClient);
 
         if (mLastLocation != null) {
-            double latitude = mLastLocation.getLatitude();
-            double longitude = mLastLocation.getLongitude();
+             latitude = mLastLocation.getLatitude();
+             longitude = mLastLocation.getLongitude();
 
             lblLocation.setText(latitude + "," + longitude);
 
@@ -102,6 +135,8 @@ public class Maps extends Activity implements GoogleApiClient.ConnectionCallback
                     .setText(R.string.gps_message);
         }
     }
+
+
 
     /**
      * Creating google api client object
@@ -171,4 +206,5 @@ public class Maps extends Activity implements GoogleApiClient.ConnectionCallback
     public void onConnectionSuspended(int arg0) {
         mGoogleApiClient.connect();
     }
+
 }
