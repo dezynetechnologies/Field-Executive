@@ -1,7 +1,9 @@
 package in.dezyne.fieldexecutive;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -15,12 +17,13 @@ import android.widget.Toast;
 /**
  * Created by Dezyne 2 on 9/8/2016.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     Button submit,logout;
     FloatingActionButton fab;
     boolean isInFront;
     ImageButton maps;
+
 
 
     @Override
@@ -29,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity_layout);
 
 
-
-
         submit = (Button)findViewById(R.id.submittions);
         logout = (Button)findViewById(R.id.logout);
         fab = (FloatingActionButton)findViewById(R.id.fabadd);
         maps =(ImageButton)findViewById(R.id.maps);
+
+        startService(new Intent(this, MyService.class));
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -85,8 +85,7 @@ public class Maps extends Activity implements GoogleApiClient.ConnectionCallback
             public void onClick(View v) {
                 displayLocation();
 
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.UK);
-                timestamp = sdf.format(new Date());
+
 
                 loc = String.valueOf(latitude)+","+String.valueOf(longitude);
 

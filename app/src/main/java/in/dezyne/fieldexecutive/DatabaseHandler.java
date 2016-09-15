@@ -79,8 +79,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         String CREATE_LOCATION_TABLE = "CREATE TABLE " + TABLE_LOCATION
                 + "("
-                + KEY_USERID + " TEXT PRIMARY KEY,"
-                + KEY_TIMESTAMP +" TEXT,"
+                + KEY_USERID + " TEXT ,"
+                + KEY_TIMESTAMP +" TEXT PRIMARY KEY,"
                 + KEY_LOCATION + " TEXT"
                 +  ")";
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCATION);

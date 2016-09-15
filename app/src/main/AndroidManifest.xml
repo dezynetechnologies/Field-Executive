@@ -69,6 +69,8 @@
             </intent-filter>
         </service>
 
+        <service android:name=".MyService" android:process=":my_service" />
+
     </application>
 
 
