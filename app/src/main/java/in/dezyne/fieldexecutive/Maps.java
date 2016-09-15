@@ -35,7 +35,6 @@ public class Maps extends Activity implements GoogleApiClient.ConnectionCallback
 
     Location mLastLocation;
 
-
     // Google client to interact with Google API
     private GoogleApiClient mGoogleApiClient;
 
@@ -45,6 +44,7 @@ public class Maps extends Activity implements GoogleApiClient.ConnectionCallback
     private LocationRequest mLocationRequest;
 
     // Location updates intervals in sec
+
     private static int UPDATE_INTERVAL = 10000; // 10 sec
     private static int FATEST_INTERVAL = 5000; // 5 sec
     private static int DISPLACEMENT = 10; // 10 meters
@@ -55,7 +55,10 @@ public class Maps extends Activity implements GoogleApiClient.ConnectionCallback
     double latitude;
     double longitude;
     String loc,timestamp,userid;
-    LocationUpdateDB db;
+
+
+    static DatabaseHandler db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,8 @@ public class Maps extends Activity implements GoogleApiClient.ConnectionCallback
         lblLocation = (TextView) findViewById(R.id.lblLocation);
         btnShowLocation = (Button) findViewById(R.id.btnShowLocation);
         btnStartLocationUpdates = (Button) findViewById(R.id.btnLocationUpdates);
+
+        db = new DatabaseHandler(this);
 
         // First we need to check availability of play services
         if (checkPlayServices()) {
@@ -79,31 +84,31 @@ public class Maps extends Activity implements GoogleApiClient.ConnectionCallback
             @Override
             public void onClick(View v) {
                 displayLocation();
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.UK);
+                timestamp = sdf.format(new Date());
+
+                loc = String.valueOf(latitude)+","+String.valueOf(longitude);
+
+                userid = "1";
+
+                Log.d("Insert: ", "Inserting ..");
+                db.addLocation(new Fields(userid,timestamp,loc));
+
+
+                Log.d("Reading: ", "Reading all contacts..");
+                List<Fields> location = db.getAllLocation();
+
+                for (Fields cn : location) {
+                    String log = "UserId: " + cn.getuserid() + " ,Timestamp: " + cn.gettimestamp() + " ,Location: " + cn.getlocation();
+                    // Writing Contacts to log
+                    Log.d("Name: ", log);
+                }
+
             }
         });
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.UK);
-        timestamp = sdf.format(new Date());
-
-        loc = String.valueOf(latitude)+String.valueOf(longitude);
-
-        userid = "1";
-
-        Log.d("Insert: ", "Inserting ..");
-        db.addContact(new LocationGetSet(userid,timestamp,loc));
-
-        Log.d("Reading: ", "Reading all contacts..");
-        List<LocationGetSet> Location = db.getAllContacts();
-
-        for (LocationGetSet ln : Location) {
-            String log = "Id: " + ln.getuserid() + " ,timestamp: " + ln.gettimestamp() + " ,location: " + ln.getlocation();
-            // Writing Contacts to log
-            Log.d("Name: ", log);
         }
-
-
-
-    }
 
     /**
      * Method to display the location on UI

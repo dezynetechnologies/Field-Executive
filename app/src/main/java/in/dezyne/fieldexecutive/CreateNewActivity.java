@@ -40,7 +40,7 @@ public class CreateNewActivity extends AppCompatActivity {
     Button sub;
     ImageButton up;
     private static int SELECT_IMAGE = 1;
-    DatabaseHandler db;
+    static DatabaseHandler db;
     static int id;
     EditText name,age,address;
     String image,nam,add,se,ag,status,submit;

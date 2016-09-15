@@ -34,7 +34,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_SUBMITDATE = "submitdate";
 
 
-    Fields fields;
+    // Contacts table name
+    private static final String TABLE_LOCATION = "Location";
+
+    private static final String KEY_USERID = "userid";
+    private static final String KEY_TIMESTAMP = "timestamp";
+    private static final String KEY_LOCATION = "location";
+
+
+     Fields fields;
      SQLiteDatabase db;
 
 
@@ -43,6 +51,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         db = getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCATION);
         onCreate(db);
         Log.v("DatabaseHandler",db.findEditTable("fields"));
     }
@@ -67,12 +76,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Log.v("DatabaseHandler","onCreate Called().");
         db.execSQL(CREATE_CONTACTS_TABLE);
 
+
+        String CREATE_LOCATION_TABLE = "CREATE TABLE " + TABLE_LOCATION
+                + "("
+                + KEY_USERID + " TEXT PRIMARY KEY,"
+                + KEY_TIMESTAMP +" TEXT,"
+                + KEY_LOCATION + " TEXT"
+                +  ")";
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCATION);
+        Log.v("DatabaseHandler","onCreate Called().");
+        db.execSQL(CREATE_LOCATION_TABLE);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCATION);
 
         // Create tables again
         onCreate(db);
@@ -104,6 +125,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
 
 
+    }
+
+    void addLocation(Fields location){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_USERID,location.getuserid());
+        values.put(KEY_TIMESTAMP,location.gettimestamp());
+        values.put(KEY_LOCATION, location.getlocation()); // Contact Name
+
+        db.insert(TABLE_LOCATION, null, values);
+        String sQuery = "SELECT  * FROM " + TABLE_LOCATION;
+        Cursor cursor = db.rawQuery(sQuery,null);
+        int g=cursor.getCount();
+        Log.v("DatabaseHandler:count",Integer.toString(g));
+        db.close();
     }
 
     Fields getContact(int id) {
@@ -171,6 +210,36 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return contactList;
 
     }
+
+    // Getting All Contacts
+    public List<Fields> getAllLocation()
+    {
+        List<Fields> locationList = new ArrayList<>();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_LOCATION;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Fields location = new Fields();
+                location.setuserid((cursor.getString(0)));
+                location.settimestamp(cursor.getString(1));
+                location.setlocation(cursor.getString(2));
+                locationList.add(location);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+
+        return locationList;
+    }
+
+
+
+
+
+
     // Updating single contact
     public int updateContact(Fields fields) {
         SQLiteDatabase db = this.getWritableDatabase();

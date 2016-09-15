@@ -13,11 +13,23 @@ public class Fields {
     String _saving;
     String _status;
     String _submitdate;
+    String _location;
+    String _timestamp;
+    String _userid;
 
 
     public Fields()
     {
     }
+
+    public Fields(String userid,String timestamp,String location)
+    {
+        this._userid = userid;
+        this._timestamp = timestamp;
+        this._location = location;
+    }
+
+
 public Fields(int id,String imagepath,String name,String sex,String age,String address,String salary,String saving,String status,String submitdate)
 {
     this._id = id;
@@ -30,6 +42,7 @@ public Fields(int id,String imagepath,String name,String sex,String age,String a
     this._saving = saving;
     this._status = status;
     this._submitdate = submitdate;
+
 
 }
 
@@ -122,6 +135,31 @@ public Fields(int id,String imagepath,String name,String sex,String age,String a
     public void setSubmitdate(String submitdate)
     {
         this._submitdate = submitdate;
+    }
+
+    public String getlocation()
+    {
+        return this._location;
+    }
+    public void setlocation(String location)
+    {
+        this._location=location ;
+    }
+
+    public String gettimestamp()
+    {
+        return this._timestamp;
+    }
+    public void settimestamp(String timestamp) {        this._timestamp=timestamp ;    }
+
+    public String getuserid()
+    {
+        return this._userid;
+    }
+
+    public void setuserid(String userid)
+    {
+        this._userid=userid ;
     }
 
 
