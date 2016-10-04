@@ -19,9 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Created by Dezyne 2 on 9/15/2016.
- */
+
 public class MyService extends Service implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
@@ -193,7 +191,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             return;
         }
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        if (mLastLocation != null) {
+        if (mLastLocation == null) {
             mLatitude = locat.getLatitude();
             mLongitude = locat.getLongitude();
         } else {
@@ -201,7 +199,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         }
 
 
-        String loc = String.valueOf(mLatitude)+","+String.valueOf(mLongitude);
+        String loc = mLatitude+","+mLongitude;
 
         userid = "1";
 

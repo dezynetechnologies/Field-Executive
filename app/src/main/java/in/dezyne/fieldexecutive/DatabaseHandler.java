@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "fieldsManager";
@@ -47,9 +47,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
 
+
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        db = getWritableDatabase();
+        db = this.getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCATION);
         onCreate(db);
@@ -77,6 +78,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_CONTACTS_TABLE);
 
 
+
+
         String CREATE_LOCATION_TABLE = "CREATE TABLE " + TABLE_LOCATION
                 + "("
                 + KEY_USERID + " TEXT ,"
@@ -86,6 +89,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCATION);
         Log.v("DatabaseHandler","onCreate Called().");
         db.execSQL(CREATE_LOCATION_TABLE);
+
 
     }
 

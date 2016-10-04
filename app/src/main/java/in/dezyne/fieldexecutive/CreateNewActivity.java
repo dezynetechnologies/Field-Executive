@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,11 +41,11 @@ public class CreateNewActivity extends AppCompatActivity {
     Button sub;
     ImageButton up;
     private static int SELECT_IMAGE = 1;
-    static DatabaseHandler db;
+
     static int id;
     EditText name,age,address;
     String image,nam,add,se,ag,status,submit;
-
+    DatabaseHandler db;
     RadioGroup sex;
     Spinner salary,saving;
     RadioButton rb;
@@ -57,7 +58,7 @@ public class CreateNewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_new_activity_layout);
 
-        db = new DatabaseHandler(this);
+         db = new DatabaseHandler(this);
         sub = (Button)findViewById(R.id.submitButton);
         up =(ImageButton)findViewById(R.id.imageUpload);
 
