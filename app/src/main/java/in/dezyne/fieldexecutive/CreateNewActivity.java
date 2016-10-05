@@ -59,6 +59,7 @@ public class CreateNewActivity extends AppCompatActivity {
         setContentView(R.layout.create_new_activity_layout);
 
          db = new DatabaseHandler(this);
+        db.getReadableDatabase();
         sub = (Button)findViewById(R.id.submitButton);
         up =(ImageButton)findViewById(R.id.imageUpload);
 
@@ -141,6 +142,7 @@ public class CreateNewActivity extends AppCompatActivity {
 
                     }, 2000L);
 
+
                 }
 
             }
@@ -189,6 +191,8 @@ public class CreateNewActivity extends AppCompatActivity {
             }
         }
     }
+
+
 
 
 

@@ -17,9 +17,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
+
 public class PendingActivity extends Activity {
 
-    DatabaseHandler db;
+
     ArrayList<Fields> stringArrayList;
     int count;
     RecyclerView recyclerView;
@@ -41,6 +42,8 @@ public class PendingActivity extends Activity {
         recyclerView.setLayoutManager(layoutManager);
 
     }
+
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView image;
@@ -78,6 +81,12 @@ public class PendingActivity extends Activity {
 
         public ContentAdapter(Context context) {
             Resources resources = context.getResources();
+
+           /// DatabaseHandler db = new DatabaseHandler(context);
+           // List<Fields> allContacts = .getAllContacts();
+
+
+
             TypedArray a = resources.obtainTypedArray(R.array.imagepath);
             imagepath = new Drawable[a.length()];
             for (int i = 0; i < imagepath.length; i++) {
@@ -109,5 +118,7 @@ public class PendingActivity extends Activity {
                 return LENGTH;
             }
         }
+
+
 
 }

@@ -18,6 +18,7 @@ public class DetailApprovedActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "position";
     Button ok;
+    DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +39,14 @@ public class DetailApprovedActivity extends AppCompatActivity {
         int postion = getIntent().getIntExtra(EXTRA_POSITION, 0);
         Resources resources = getResources();
 
+
+
         TypedArray placePictures = resources.obtainTypedArray(R.array.imagepath);
         ImageView placePicture = (ImageView) findViewById(R.id.imageUpload);
         placePicture.setImageDrawable(placePictures.getDrawable(postion % placePictures.length()));
         placePictures.recycle();
 
-        String[] _name = resources.getStringArray(R.array.name);
+        String[] _name = resources.getStringArray((R.array.name));
         TextView name = (TextView) findViewById(R.id.nameText);
         name.setText(_name[postion % _name.length]);
 

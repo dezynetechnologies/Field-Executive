@@ -6,18 +6,42 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.android.internal.http.multipart.MultipartEntity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import javax.net.ssl.HttpsURLConnection;
 
 
 public class MyService extends Service implements GoogleApiClient.ConnectionCallbacks,
@@ -208,6 +232,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         db.addLocation(new Fields(userid, timestamp, loc));
 
 
+
         Log.d("Reading: ", "Reading all contacts..");
         List<Fields> location = db.getAllLocation();
 
@@ -216,7 +241,9 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             // Writing Contacts to log
             Log.d("Name: ", log);
         }
+
     }
+
 
 
 

@@ -5,10 +5,18 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.util.Log;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.net.ssl.HttpsURLConnection;
 
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -19,7 +27,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "fieldsManager";
 
     // Contacts table name
-    private static final String TABLE_CONTACTS = "fields";
+    public static final String TABLE_CONTACTS = "fields";
 
     // Contacts Table Columns names
     private static final String KEY_ID = "id";
@@ -40,9 +48,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_USERID = "userid";
     private static final String KEY_TIMESTAMP = "timestamp";
     private static final String KEY_LOCATION = "location";
+    private static final String TAG = "Database" ;
 
 
-     Fields fields;
+    Fields fields;
      SQLiteDatabase db;
 
 
@@ -54,7 +63,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCATION);
         onCreate(db);
-        Log.v("DatabaseHandler",db.findEditTable("fields"));
+        Log.v("DatabaseHandler", SQLiteDatabase.findEditTable("fields"));  /*SQLiteDatabase is replacement for db here*/
     }
 
     @Override
@@ -147,6 +156,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         int g=cursor.getCount();
         Log.v("DatabaseHandler:count",Integer.toString(g));
         db.close();
+
+
     }
 
     Fields getContact(int id) {

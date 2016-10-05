@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,10 +16,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 public class ApprovedActivity extends Activity {
 
     RecyclerView recyclerView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,9 @@ public class ApprovedActivity extends Activity {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
+
+
+
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView image;
@@ -40,6 +48,8 @@ public class ApprovedActivity extends Activity {
 
 
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
+
+
             super(inflater.inflate(R.layout.approve_layout, parent, false));
             image =(ImageView)itemView.findViewById(R.id.imageview);
             name =(TextView)itemView.findViewById(R.id.nameview);
@@ -68,7 +78,13 @@ public class ApprovedActivity extends Activity {
         private final String[] submitdate;
 
 
-        public ContentAdapter(Context context) {
+        public ContentAdapter(Context context)
+        {
+
+
+
+
+
             Resources resources = context.getResources();
             TypedArray a = resources.obtainTypedArray(R.array.imagepath);
             imagepath = new Drawable[a.length()];
