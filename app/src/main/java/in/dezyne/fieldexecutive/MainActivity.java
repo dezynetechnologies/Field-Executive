@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab;
     boolean isInFront;
     ImageButton maps;
+    static int response;
 
 
     @Override
@@ -149,9 +150,9 @@ public class MainActivity extends AppCompatActivity {
                 conn.setDoOutput(true);
 
                 Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("firstParam", "1")
-                        .appendQueryParameter("secondParam", "12:10")
-                        .appendQueryParameter("thirdParam", "Delhi");
+                        .appendQueryParameter("firstParam", "")
+                        .appendQueryParameter("secondParam", "")
+                        .appendQueryParameter("thirdParam", "");
                 String query = builder.build().getEncodedQuery();
 
                 OutputStream os = conn.getOutputStream();
@@ -163,6 +164,8 @@ public class MainActivity extends AppCompatActivity {
                 os.close();
 
                 conn.connect();
+                response = conn.getResponseCode();
+
                 Log.e(TAG, "Data Sent");
             } catch (IOException e) {
 
@@ -170,6 +173,15 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "Data Not Sent");
             }
             return null;
+        }
+
+
+
+        @Override
+        protected void onPostExecute(String result){
+
+           Log.e(TAG,String.valueOf(response));
+
         }
 
         /*@Override
@@ -186,8 +198,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
 
         }*/
     }
