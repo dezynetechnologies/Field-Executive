@@ -8,6 +8,7 @@ import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,7 +20,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class ApprovedActivity extends Activity {
+public class ApprovedActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
@@ -29,6 +30,8 @@ public class ApprovedActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.approve_layout);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recyclerView = (RecyclerView)findViewById(R.id.my_recycler_view3);
         ContentAdapter adapter = new ContentAdapter(getApplicationContext());
@@ -50,7 +53,7 @@ public class ApprovedActivity extends Activity {
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
 
 
-            super(inflater.inflate(R.layout.approve_layout, parent, false));
+            super(inflater.inflate(R.layout.testlayout1, parent, false));
             image =(ImageView)itemView.findViewById(R.id.imageview);
             name =(TextView)itemView.findViewById(R.id.nameview);
             submitdate =(TextView)itemView.findViewById(R.id.submitdate);

@@ -12,9 +12,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 /**
- * Created by Dezyne 2 on 9/13/2016.
+ * Created by Dezyne 2 on 11/4/2016.
  */
-public class DetailApprovedActivity extends AppCompatActivity {
+
+public class DetailRejectedActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "position";
     Button ok;
@@ -23,7 +24,7 @@ public class DetailApprovedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_approved_activity_layout);
+        setContentView(R.layout.detail_rejected_activity_layout);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -33,7 +34,7 @@ public class DetailApprovedActivity extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailApprovedActivity.this, PendingActivity.class);
+                Intent intent = new Intent(DetailRejectedActivity.this, RejectedActivity.class);
                 startActivity(intent);
             }
         });

@@ -13,7 +13,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <!-- to access information about networks -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
     <!-- to access approximate location through network location providers -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
@@ -42,16 +42,46 @@
         </activity>
 
         <activity android:name=".CreateNewActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
 
         <activity android:name=".MainActivity"/>
 
         <activity android:name=".SubmittionActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ApprovedActivity"/>
-        <activity android:name=".PendingActivity"/>
-        <activity android:name=".DetailPendingActivity"/>
-        <activity android:name=".DetailApprovedActivity"/>
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".ApprovedActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SubmittionActivity" />
+        </activity>
+
+        <activity android:name=".RejectedActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SubmittionActivity" />
+        </activity>
+        <activity android:name=".PendingActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SubmittionActivity" />
+        </activity>
+        <activity android:name=".DetailPendingActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".PendingActivity" />
+        </activity>
+        <activity android:name=".DetailApprovedActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ApprovedActivity" />
+        </activity>
         <activity android:name=".Maps"/>
 
 

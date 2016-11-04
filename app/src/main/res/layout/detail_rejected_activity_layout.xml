@@ -1,0 +1,299 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_horizontal_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:background="@drawable/back">
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Name"
+                android:id="@+id/textView2"
+
+                android:textSize="15dp"
+                android:textColor="#ffffff"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="22dp" />
+
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="25dp"
+                android:id="@+id/nameText"
+                android:background="@drawable/roundshapebtn"
+                android:inputType="textPersonName"
+                android:textColor="#ffffff"
+                android:paddingLeft="3dp"
+                android:layout_alignTop="@+id/textView2"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:text="OK"
+                android:id="@+id/okButton"
+                android:background="@drawable/roundshapebtn"
+                android:textColor="#ffffff"
+                android:layout_marginTop="33dp"
+                android:layout_below="@+id/textView16"
+                android:layout_toRightOf="@+id/textView7"
+                android:layout_toEndOf="@+id/textView7" />
+
+            <ImageButton
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:id="@+id/imageUpload"
+                android:src="@drawable/upload"
+                android:scaleType="fitXY"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <RadioGroup
+                android:id="@+id/radioSex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:checkedButton="@+id/radioButton2"
+                android:orientation='horizontal'
+                android:layout_below="@+id/nameText"
+                android:layout_alignRight="@+id/nameText"
+                android:layout_alignEnd="@+id/nameText"
+                android:layout_marginRight="21dp"
+                android:layout_marginEnd="21dp">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:id="@+id/radioButton"
+                    android:checked="false"
+                    android:textColor="#ffffff"
+
+                    android:textSize="10dp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female"
+                    android:id="@+id/radioButton2" android:checked="false"
+                    android:textColor="#ffffff"
+                    android:editable="false"
+                    android:textSize="10dp"
+                    android:layout_alignTop="@+id/radioSex"
+                    android:layout_toLeftOf="@+id/radioSex"
+                    android:layout_toStartOf="@+id/radioSex" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Sex"
+                android:id="@+id/textView3"
+                android:textColor="#ffffff"
+                android:textSize="15dp"
+                android:paddingLeft="3dp"
+                android:layout_alignTop="@+id/radioSex"
+                android:layout_alignLeft="@+id/textView2"
+                android:layout_alignStart="@+id/textView2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Age"
+                android:id="@+id/textView4"
+                android:layout_marginTop="102dp"
+                android:textSize="15dp"
+                android:paddingLeft="3dp"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/textView13"
+                android:layout_alignRight="@+id/imageUpload"
+                android:layout_alignEnd="@+id/imageUpload"
+                android:layout_marginRight="49dp"
+                android:layout_marginEnd="49dp" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="25dp"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/ageText"
+                android:paddingLeft="3dp"
+                android:background="@drawable/roundshapebtn"
+                android:layout_alignTop="@+id/textView4"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Address"
+                android:id="@+id/textView5"
+                android:textSize="15dp"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/ageText"
+                android:layout_alignLeft="@+id/textView4"
+                android:layout_alignStart="@+id/textView4"
+                android:layout_marginTop="38dp" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/addressText"
+                android:background="@drawable/roundshapebtn"
+                android:paddingLeft="3dp"
+                android:textColor="#ffffff"
+                android:layout_alignTop="@+id/textView5"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Current Salary"
+                android:id="@+id/textView6"
+                android:layout_marginTop="45dp"
+                android:textSize="15dp"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/textView5"
+                android:layout_alignLeft="@+id/textView5"
+                android:layout_alignStart="@+id/textView5" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="25dp"
+                android:id="@+id/spinner"
+                android:background="@drawable/roundshapebtn"
+                android:textColor="#ffffff"
+                android:paddingLeft="3dp"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Saving Targets"
+                android:id="@+id/textView7"
+                android:layout_marginTop="38dp"
+                android:textSize="15dp"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/spinner"
+                android:layout_alignRight="@+id/textView6"
+                android:layout_alignEnd="@+id/textView6" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="25dp"
+                android:id="@+id/spinner2"
+                android:background="@drawable/roundshapebtn"
+                android:textColor="#ffffff"
+                android:paddingLeft="3dp"
+                android:layout_alignTop="@+id/textView7"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Status"
+                android:id="@+id/textView13"
+                android:paddingLeft="3dp"
+                android:layout_alignBottom="@+id/imageUpload"
+                android:layout_alignLeft="@+id/textView3"
+                android:layout_alignStart="@+id/textView3"
+                android:textSize="15dp"
+                android:textColor="#ffffff" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageView"
+                android:scaleType="fitXY"
+                android:src="@drawable/rejected"
+                android:layout_alignTop="@+id/textView13"
+                android:layout_alignLeft="@+id/radioSex"
+                android:layout_alignStart="@+id/radioSex"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:adjustViewBounds="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Submit Date"
+                android:id="@+id/textView14"
+                android:textSize="15dp"
+                android:paddingLeft="3dp"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/imageView"
+                android:layout_alignLeft="@+id/textView4"
+                android:layout_alignStart="@+id/textView4"
+                android:layout_marginTop="30dp" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="25dp"
+                android:id="@+id/submitdate"
+                android:background="@drawable/roundshapebtn"
+                android:textColor="#ffffff"
+                android:layout_alignBottom="@+id/textView14"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Reason"
+                android:id="@+id/textView15"
+                android:paddingLeft="3dp"
+                android:layout_below="@+id/spinner2"
+                android:layout_alignLeft="@+id/textView7"
+                android:layout_alignStart="@+id/textView7"
+                android:layout_marginTop="34dp"
+                android:textSize="15dp"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/textView16"
+                android:paddingLeft="3dp"
+                android:background="@drawable/roundshapebtn"
+                android:textColor="#ffffff"
+                android:layout_alignTop="@+id/textView15"
+                android:layout_alignLeft="@+id/spinner2"
+                android:layout_alignStart="@+id/spinner2" />
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>

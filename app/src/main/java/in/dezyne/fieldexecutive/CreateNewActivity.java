@@ -58,6 +58,8 @@ public class CreateNewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_new_activity_layout);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
          db = new DatabaseHandler(this);
         db.getReadableDatabase();
         sub = (Button)findViewById(R.id.submitButton);
@@ -130,17 +132,30 @@ public class CreateNewActivity extends AppCompatActivity {
                     // Writing Contacts to log
                     Log.d("Name: ", log);
 
+                    new AlertDialog.Builder(context)
+                            .setTitle("Entry Created")
+                            .setMessage("Your Entry Has been Created")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(CreateNewActivity.this,MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
 
-                    Handler mHandler = new Handler();
+                   /* Handler mHandler = new Handler();
                     mHandler.postDelayed(new Runnable() {
 
                         @Override
                         public void run() {
-                            Intent intent = new Intent(CreateNewActivity.this,MainActivity.class);
+
+
+                        Intent intent = new Intent(CreateNewActivity.this,MainActivity.class);
                             startActivity(intent);
                         }
 
-                    }, 2000L);
+                    }, 2000L);*/
 
 
                 }

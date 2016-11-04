@@ -1,12 +1,12 @@
 package in.dezyne.fieldexecutive;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,49 +15,46 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.ArrayList;
 
+/**
+ * Created by Dezyne 2 on 11/4/2016.
+ */
 
+public class RejectedActivity extends AppCompatActivity {
 
-public class PendingActivity extends AppCompatActivity {
-
-
-    ArrayList<Fields> stringArrayList;
-    int count;
     RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pending_layout);
+        setContentView(R.layout.rejected_layout);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //db = new DatabaseHandler(this);
-        //db.getContact(1);
-
-        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view2);
-        ContentAdapter adapter = new ContentAdapter(getApplicationContext());
+        recyclerView = (RecyclerView)findViewById(R.id.my_recycler_view4);
+        ApprovedActivity.ContentAdapter adapter = new ApprovedActivity.ContentAdapter(getApplicationContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
+
+
     }
-
-
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView image;
         public TextView name;
         public TextView submitdate;
 
+
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
+
+
             super(inflater.inflate(R.layout.testlayout1, parent, false));
-            image = (ImageView) itemView.findViewById(R.id.imageview);
-            name = (TextView) itemView.findViewById(R.id.nameview);
-            submitdate = (TextView) itemView.findViewById(R.id.submitdate);
+            image =(ImageView)itemView.findViewById(R.id.imageview);
+            name =(TextView)itemView.findViewById(R.id.nameview);
+            submitdate =(TextView)itemView.findViewById(R.id.submitdate);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -70,9 +67,9 @@ public class PendingActivity extends AppCompatActivity {
                 }
             });
 
-
         }
     }
+
 
     public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
         // Set numbers of List in RecyclerView.
@@ -82,21 +79,20 @@ public class PendingActivity extends AppCompatActivity {
         private final String[] submitdate;
 
 
-        public ContentAdapter(Context context) {
+        public ContentAdapter(Context context)
+        {
+
+
+
+
+
             Resources resources = context.getResources();
-
-           /// DatabaseHandler db = new DatabaseHandler(context);
-           // List<Fields> allContacts = .getAllContacts();
-
-
-
             TypedArray a = resources.obtainTypedArray(R.array.imagepath);
             imagepath = new Drawable[a.length()];
             for (int i = 0; i < imagepath.length; i++) {
                 imagepath[i] = a.getDrawable(i);
             }
             a.recycle();
-            //imagepath = resources.getStringArray(R.array.imagepath);
             name = resources.getStringArray(R.array.name);
             submitdate = resources.getStringArray(R.array.submitdate);
 
@@ -114,14 +110,10 @@ public class PendingActivity extends AppCompatActivity {
             holder.name.setText(name[position % name.length]);
             holder.submitdate.setText(submitdate[position % submitdate.length]);
         }
-
-            @Override
-            public int getItemCount()
-            {
-                return LENGTH;
-            }
+        @Override
+        public int getItemCount() {
+            return LENGTH;
         }
-
-
-
+    }
 }
+

@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 
 public class SubmittionActivity extends AppCompatActivity {
 
-    ImageButton approve,pending;
+    ImageButton approve,pending,rejected;
 
 
     @Override
@@ -18,8 +18,11 @@ public class SubmittionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.submit_activity_layout);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         approve = (ImageButton)findViewById(R.id.approvedview);
         pending = (ImageButton)findViewById(R.id.pendingview);
+        rejected = (ImageButton)findViewById(R.id.rejectedview);
 
 
         approve.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +43,15 @@ public class SubmittionActivity extends AppCompatActivity {
             }
         });
 
+
+        rejected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(SubmittionActivity.this,RejectedActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

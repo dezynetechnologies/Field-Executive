@@ -68,5 +68,6 @@
     <string name="permission_required_toast">Need Permission</string>
     <string name="record_audio_permission_denied" />
     <string name="permission_rationale_record_audio"/>
+    <string name="action_log_out">Log Out</string>
 
 </resources>

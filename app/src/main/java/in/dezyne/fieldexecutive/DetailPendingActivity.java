@@ -23,6 +23,9 @@ public class DetailPendingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_pending_activity_layout);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         ok =(Button)findViewById(R.id.okButton);
 
 

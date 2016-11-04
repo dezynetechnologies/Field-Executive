@@ -11,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +39,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG ="Maps" ;
-    Button submit, logout;
+    Button submit;
     FloatingActionButton fab;
     boolean isInFront;
     ImageButton maps;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         submit = (Button) findViewById(R.id.submittions);
-        logout = (Button) findViewById(R.id.logout);
+
         fab = (FloatingActionButton) findViewById(R.id.fabadd);
         maps = (ImageButton) findViewById(R.id.maps);
 
@@ -66,15 +67,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-
-            }
-        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +106,40 @@ public class MainActivity extends AppCompatActivity {
         isInFront = false;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // One of the group items (using the onClick attribute) was clicked
+        // The item parameter passed here indicates which item it is
+        // All other menu item clicks are handled by onOptionsItemSelected()
+
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                settings();
+                return true;
+            case R.id.action_log_out:
+                log();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    private void settings() {
+    }
+    private void log() {
+
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
 
 
     public class postdata extends AsyncTask<String, Void, String>
@@ -183,6 +209,8 @@ public class MainActivity extends AppCompatActivity {
            Log.e(TAG,String.valueOf(response));
 
         }
+
+
 
         /*@Override
         protected void onPostExecute(String results)
